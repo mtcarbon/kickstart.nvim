@@ -276,6 +276,12 @@ require('lazy').setup({
   -- require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
+  'lervag/vimtex',
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  }
+
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
   --    up-to-date with whatever is in the kickstart repo.
@@ -369,6 +375,9 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
+-- Enable telescope-file-browser
+pcall(require('telescope').load_extension, 'file_browser')
+
 -- Telescope live_grep in git root
 -- Function to find the git root directory based on the current buffer's path
 local function find_git_root()
@@ -432,6 +441,15 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+
+
+-- [[ Configure Telescope File Browser ]]
+-- See `:help telescope` and `:help telescope.setup()`
+--vim.keymap.set('n', '<leader>fb', require('telescope').extensions.file_browser, { desc = '[F]ile [B]rowser' })
+vim.keymap.set("n", "<space>fb", function()
+  require("telescope").extensions.file_browser.file_browser()
+end, { desc = '[F]ile [B]rowser' })
+
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
