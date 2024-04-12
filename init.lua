@@ -472,7 +472,6 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 
 -- [[ Configure Telescope File Browser ]]
 -- See `:help telescope` and `:help telescope.setup()`
---vim.keymap.set('n', '<leader>fb', require('telescope').extensions.file_browser, { desc = '[F]ile [B]rowser' })
 vim.keymap.set("n", "<space>fb", function()
   require("telescope").extensions.file_browser.file_browser()
 end, { desc = '[F]ile [B]rowser' })
