@@ -361,6 +361,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- [[ Set gq to  autopep8 ]]
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  callback = function()
+    local mason_path = vim.fn.stdpath("data") .. "/mason/bin/autopep8"
+    vim.bo.formatprg = mason_path .. " -"
+  end,
+})
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
