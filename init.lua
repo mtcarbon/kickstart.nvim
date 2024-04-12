@@ -270,6 +270,11 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -404,6 +409,13 @@ local function live_grep_git_root()
 end
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
+
+vim.api.nvim_set_keymap(
+    "n",
+    "<space>fb",
+    ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+    { noremap = true }
+)
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
